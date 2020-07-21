@@ -7,7 +7,6 @@ public class Teacher {
     private int id;
     private String name;
     private int salary;
-
     /**
      * Creates a new Teacher object.
      * @param id id of teacher.
@@ -19,28 +18,24 @@ public class Teacher {
         this.name = name;
         this.salary = salary;
     }
-
     /**
      * @return the id.
      */
     public int getId() {
         return id;
     }
-
     /**
      * @return the name of the teacher.
      */
     public String getName() {
         return name;
     }
-
     /**
      * @return the salary of the teacher.
      */
     public int getSalary() {
         return salary;
     }
-
     /**
      * set the salary.
      * @param salary of the teacher.
