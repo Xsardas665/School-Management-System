@@ -46,4 +46,39 @@ public class Student {
         feesPaid += fees;
         feesRemaining -= fees;
     }
+
+    /**
+     * @return id of the student.
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @return name of the student.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @return grade of the student.
+     */
+    public int getGrade() {
+        return grade;
+    }
+
+    /**
+     * @return feesPaid by the student.
+     */
+    public int getFeesPaid() {
+        return feesPaid;
+    }
+
+    /**
+     * @return feesRemaining for the student.
+     */
+    public int getFeesRemaining() {
+        return feesRemaining;
+    }
 }
