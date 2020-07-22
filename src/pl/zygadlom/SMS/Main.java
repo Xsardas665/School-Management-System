@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    private static String cmd;
     private static List<Teacher> teacherList;
     private static List<Student> studentList;
     public static void main(String[] args) {
@@ -36,35 +35,47 @@ public class Main {
         studentList.add(sOslo);
 
         School school = new School(teacherList, studentList);
-        System.out.println("School has earned $" + school.getTotalMoneyEarned());
-        System.out.println("School has spent $" + school.getTotalMoneySpent());
-        System.out.println("School Balance $" + school.getSchoolBalance());
+        school.printSchoolState();
 
         Scanner input = new Scanner(System.in);
         while(true) {
-            cmd = input.nextLine();
+            String cmd = input.nextLine();
             cmd = cmd.toLowerCase();
             if (cmd.equals("end")) {
                 break;
             } else {
-                parsecommand();
+                parsecommand(cmd);
                 school.printSchoolState();
             }
         }
     }
 
-    private static void parsecommand() {
+    private static void parsecommand(String cmd) {
         String[] params = cmd.split(" ");
         if (params[0].equals("student")) {
             int id = Integer.parseInt(params[1]);
             if (params[2].equals("paid")) {
                 int value = Integer.parseInt(params[3]);
                 studentList.get(id - 1).payFees(value);
+                System.out.println(studentList.get(id - 1).getName() + " paid $" + value + " of fees.");
+            } else if (params[2].equals("info")) {
+                Student student = studentList.get(id-1);
+                System.out.println(student.getName() + " | " + student.getGrade() + " | $" + student.getFeesRemaining() + " left");
             } else {
                 System.out.println("Something went Wrong.");
             }
-        }else{
-            System.out.println("Unknown Command.");
+        } else if (params[0].equals("teacher")) {
+            int id = Integer.parseInt(params[1]);
+            if (params[2].equals("bonus")){
+                int value = Integer.parseInt(params[3]);
+                teacherList.get(id - 1).updateBalance(value);
+                System.out.println(teacherList.get(id - 1).getName() + " get $" + value + " of bonus.");
+            } else if (params[2].equals("info")){
+                Teacher teacher = teacherList.get(id-1);
+                System.out.println(teacher.getName() + " | $" + teacher.getSalary());
+            }
+        } else {
+                System.out.println("Unknown Command.");
         }
     }
 }
